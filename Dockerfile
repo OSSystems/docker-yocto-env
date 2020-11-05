@@ -1,10 +1,20 @@
-FROM debian:10.3
+ARG version=18.04
+
+FROM ubuntu:$version
 
 # Does prevent interactive questions on apt operations
 ENV DEBIAN_FRONTEND=noninteractive
-ENV WORKSPACE=/opt/build
 
+# Install the required packages for development. We do this in a single command
+# so the cache of the layer is handled atomically.
+#
+# The `realpath` is specific for Ubuntu 14.04 as later it was included in
+# `coreutils` package.
 RUN apt-get update && \
+    \
+    apt-get install -y --no-install-recommends realpath || true && \
+    apt-get install -y g++-arm-linux-gnueabihf gcc-arm-linux-gnueabihf && \
+    \
     apt-get install -y --no-install-recommends \
         build-essential \
         chrpath \
@@ -12,6 +22,7 @@ RUN apt-get update && \
         debianutils \
         diffstat \
         file \
+        g++-multilib \
         gawk \
         gcc-multilib \
         git-core \
@@ -20,13 +31,8 @@ RUN apt-get update && \
         libegl1-mesa \
         libsdl1.2-dev \
         locales \
-        pylint3 \
         python \
         python3 \
-        python3-git \
-        python3-jinja2 \
-        python3-pexpect \
-        python3-pip \
         socat \
         sudo \
         texinfo \
@@ -35,25 +41,35 @@ RUN apt-get update && \
         xterm \
         xz-utils \
         \
-        procps && \
-    /usr/sbin/locale-gen en_US.UTF-8 && \
+        jq \
+        libncurses-dev \
+        nano \
+        procps \
+        python3-lxml \
+        rpm \
+        tmux \
+        xterm \
+        \
+        bash \
+        bc \
+        bison \
+        device-tree-compiler \
+        flex \
+        libssl-dev \
+        lzop \
+        python-dev \
+        swig \
+        && \
     rm -rf /var/lib/apt/lists/*
 
-# Set the locale
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    locale-gen
+RUN locale-gen en_US.UTF-8
+
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN useradd -U -m -s /bin/bash builder && \
-    mkdir -p ${WORKSPACE} && \
-    chown -R builder:builder ${WORKSPACE} && \
-    adduser builder root && \
-    adduser builder sudo && \
-    echo 'builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+WORKDIR /
+COPY entrypoint.sh .
+COPY yocto-env .
 
-USER builder
-
-CMD []
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/entrypoint.sh"]

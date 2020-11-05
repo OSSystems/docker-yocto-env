@@ -1,0 +1,61 @@
+#! /usr/bin/env bash
+
+usage() {
+    cat <<EOF
+Yocto Project Environment helper
+
+USAGE:
+
+  yocto-env <version> [--skip-pull]
+
+OPTIONS
+
+  version           Environment version to use. This maps to Ubuntu releases
+                    and currently it provides the 14.04, 16.04, 18.04 and
+                    20.04.
+EOF
+    exit 1
+}
+
+case "$1" in
+    14.04|16.04|18.04|20.04)
+        version=$1
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+USER=$(whoami)
+IMAGE=ossystems/yocto-env:$version
+
+case "$2" in
+    --skip-pull)
+        ;;
+    "")
+        docker pull $IMAGE
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+
+docker run \
+       --rm \
+       -t \
+       -i \
+       --privileged \
+       --cap-add=NET_ADMIN \
+       --device=/dev/kvm \
+       --device=/dev/net/tun \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       -v ${HOME}:${HOME} \
+       -e DISPLAY=$DISPLAY \
+       --env=HOST_UID=$(id -u) \
+       --env=HOST_GID=$(id -g) \
+       --env=USER=$USER \
+       --env=SHELL=$SHELL \
+       --hostname yocto-env \
+       -w $PWD \
+       $IMAGE run
