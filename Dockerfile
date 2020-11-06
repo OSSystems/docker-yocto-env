@@ -50,7 +50,6 @@ RUN apt-get update && \
         tmux \
         xterm \
         \
-        bash \
         bc \
         bison \
         device-tree-compiler \
@@ -59,6 +58,9 @@ RUN apt-get update && \
         lzop \
         python-dev \
         swig \
+        \
+        bash \
+        zsh \
         && \
     rm -rf /var/lib/apt/lists/*
 
