@@ -17,6 +17,7 @@ RUN apt-get update && \
     \
     apt-get install -y --no-install-recommends \
         build-essential \
+        ca-certificates \
         chrpath \
         cpio \
         debianutils \
@@ -31,6 +32,7 @@ RUN apt-get update && \
         libegl1-mesa \
         libsdl1.2-dev \
         locales \
+        openssl \
         python \
         python3 \
         socat \
