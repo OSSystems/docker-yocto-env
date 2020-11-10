@@ -32,6 +32,7 @@ RUN apt-get update && \
         libegl1-mesa \
         libsdl1.2-dev \
         locales \
+        openssh-client \
         openssl \
         python \
         python3 \
