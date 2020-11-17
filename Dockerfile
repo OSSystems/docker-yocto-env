@@ -29,6 +29,7 @@ RUN apt-get update && \
         git-core \
         glib-2.0-dev \
         iputils-ping \
+        less \
         libegl1-mesa \
         libsdl1.2-dev \
         locales \
