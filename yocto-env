@@ -50,6 +50,7 @@ docker run \
        --device=/dev/kvm \
        --device=/dev/net/tun \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
+       -v /nix:/nix \
        -v ${HOME}:${HOME} \
        -e DISPLAY=$DISPLAY \
        --env=HOST_UID=$(id -u) \
