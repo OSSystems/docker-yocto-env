@@ -11,10 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # The `realpath` is specific for Ubuntu 14.04 as later it was included in
 # `coreutils` package.
 RUN apt-get update && \
-    \
     apt-get install -y --no-install-recommends realpath || true && \
-    apt-get install -y g++-arm-linux-gnueabihf gcc-arm-linux-gnueabihf && \
-    \
     apt-get install -y --no-install-recommends \
         build-essential \
         ca-certificates \
@@ -23,9 +20,7 @@ RUN apt-get update && \
         debianutils \
         diffstat \
         file \
-        g++-multilib \
         gawk \
-        gcc-multilib \
         git-core \
         glib-2.0-dev \
         iputils-ping \
@@ -62,6 +57,9 @@ RUN apt-get update && \
         lzop \
         python-dev \
         swig \
+        \
+        g++-arm-linux-gnueabihf \
+        gcc-arm-linux-gnueabihf \
         \
         bash \
         zsh \
