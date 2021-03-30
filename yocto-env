@@ -60,5 +60,6 @@ docker run \
        --env=SHELL=$SHELL \
        --env=SSH_AUTH_SOCK=/ssh-agent \
        --hostname yocto-env \
+       $YOCTO_ENV_EXTRA_DOCKER_ARGS \
        -w $PWD \
        $IMAGE run
