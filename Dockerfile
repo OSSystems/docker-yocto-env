@@ -48,6 +48,7 @@ RUN apt-get update && \
         rpm \
         tmux \
         xterm \
+        python3-git \
         \
         bc \
         bison \
