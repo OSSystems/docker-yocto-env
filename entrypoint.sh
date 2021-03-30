@@ -17,7 +17,7 @@ case "$1" in
 
         echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-        exec sudo -H -u ${USER} /bin/$(basename $SHELL)
+        exec sudo --preserve-env -H -u ${USER} /bin/$(basename $SHELL)
         ;;
     "")
         cat > /dev/stderr <<EOF
