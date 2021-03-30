@@ -52,11 +52,13 @@ docker run \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
        -v /nix:/nix \
        -v ${HOME}:${HOME} \
-       -e DISPLAY=$DISPLAY \
+       -v "$SSH_AUTH_SOCK:/ssh-agent" \
+       --env DISPLAY=$DISPLAY \
        --env=HOST_UID=$(id -u) \
        --env=HOST_GID=$(id -g) \
        --env=USER=$USER \
        --env=SHELL=$SHELL \
+       --env=SSH_AUTH_SOCK=/ssh-agent \
        --hostname yocto-env \
        -w $PWD \
        $IMAGE run
