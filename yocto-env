@@ -40,6 +40,12 @@ case "$2" in
         ;;
 esac
 
+DOCKER_EXTRA_ARGS=""
+
+# ssh-agent support
+if [ -n "$SSH_AUTH_SOCK" ]; then
+    DOCKER_EXTRA_ARGS="$DOCKER_EXTRA_ARGS -v '$SSH_AUTH_SOCK:/ssh-agent' --env=SSH_AUTH_SOCK=/ssh-agent"
+fi
 
 docker run \
        --rm \
@@ -52,14 +58,13 @@ docker run \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
        -v /nix:/nix \
        -v ${HOME}:${HOME} \
-       -v "$SSH_AUTH_SOCK:/ssh-agent" \
        --env DISPLAY=$DISPLAY \
        --env=HOST_UID=$(id -u) \
        --env=HOST_GID=$(id -g) \
        --env=USER=$USER \
        --env=SHELL=$SHELL \
-       --env=SSH_AUTH_SOCK=/ssh-agent \
        --hostname yocto-env \
+       $DOCKER_EXTRA_ARGS \
        $YOCTO_ENV_EXTRA_DOCKER_ARGS \
        -w $PWD \
        $IMAGE run
