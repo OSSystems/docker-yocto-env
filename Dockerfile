@@ -41,6 +41,7 @@ RUN apt-get update && \
         xz-utils \
         \
         jq \
+        curl \
         libncurses-dev \
         nano \
         procps \
