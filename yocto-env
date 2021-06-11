@@ -43,9 +43,7 @@ esac
 DOCKER_EXTRA_ARGS=""
 
 # ssh-agent support
-if [ -n "$SSH_AUTH_SOCK" ]; then
-    DOCKER_EXTRA_ARGS="$DOCKER_EXTRA_ARGS -v '$SSH_AUTH_SOCK:/ssh-agent' --env=SSH_AUTH_SOCK=/ssh-agent"
-fi
+[ -n "$SSH_AUTH_SOCK" ] && DOCKER_EXTRA_ARGS="$DOCKER_EXTRA_ARGS -v $SSH_AUTH_SOCK:/ssh-agent --env=SSH_AUTH_SOCK=/ssh-agent"
 
 docker run \
        --rm \
