@@ -36,6 +36,7 @@ RUN apt-get update && \
         sudo \
         texinfo \
         unzip \
+        zstd \
         wget \
         xterm \
         xz-utils \
