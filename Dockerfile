@@ -26,6 +26,7 @@ RUN apt-get update && \
         iputils-ping \
         less \
         libegl1-mesa \
+        liblz4-tool \
         libsdl1.2-dev \
         locales \
         openssh-client \
