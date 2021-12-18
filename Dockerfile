@@ -45,6 +45,7 @@ RUN apt-get update && \
         jq \
         curl \
         libncurses-dev \
+        git-lfs \
         nano \
         procps \
         python3-lxml \
