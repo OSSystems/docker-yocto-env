@@ -12,6 +12,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # `coreutils` package.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends realpath || true && \
+    apt-get install -y --no-install-recommends python python-dev || true && \
     apt-get install -y --no-install-recommends \
         build-essential \
         ca-certificates \
@@ -31,8 +32,8 @@ RUN apt-get update && \
         locales \
         openssh-client \
         openssl \
-        python \
         python3 \
+        python3-dev \
         socat \
         sudo \
         texinfo \
@@ -61,7 +62,6 @@ RUN apt-get update && \
         flex \
         libssl-dev \
         lzop \
-        python-dev \
         swig \
         \
         g++-arm-linux-gnueabihf \
