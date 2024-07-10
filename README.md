@@ -16,6 +16,7 @@ The generated wrapper, `yocto-env`, has the following usage message:
     OPTIONS
 
       version           Environment version to use. This maps to Ubuntu releases
-                        and currently it provides the 16.04, 18.04, and 20.04.
+                        and currently it provides the 16.04, 18.04,
+                        and 20.04, 22.04 and 24.04.
 
 
