@@ -46,6 +46,7 @@ RUN apt-get update && \
         jq \
         curl \
         iproute2 \
+        iptables \
         libncurses-dev \
         git-lfs \
         nano \
