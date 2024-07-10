@@ -12,13 +12,13 @@ OPTIONS
 
   version           Environment version to use. This maps to Ubuntu releases
                     and currently it provides the 14.04, 16.04, 18.04,
-                    20.04 and 22.04.
+                    20.04, 22.04 and 24.04.
 EOF
     exit 1
 }
 
 case "$1" in
-    14.04*|16.04*|18.04*|20.04*|22.04*)
+    14.04*|16.04*|18.04*|20.04*|22.04*|24.04*)
         version=$1
         ;;
     *)
