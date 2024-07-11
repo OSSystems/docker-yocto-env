@@ -9,6 +9,7 @@ case "$1" in
         USER_UID=${HOST_UID:=$UID}
         USER_GID=${HOST_GID:=$GID}
 
+        awk -F : "\$3 == ${USER_UID} { print \$1 }" /etc/passwd | xargs userdel
         groupmod -g ${USER_GID} users
         useradd ${USER} \
                 -s /bin/bash \

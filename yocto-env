@@ -60,7 +60,6 @@ docker run \
        --device=/dev/kvm \
        --device=/dev/net/tun \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
-       -v /etc/passwd:/etc/passwd:ro \
        -v ${HOME}:${HOME} \
        --env DISPLAY=$DISPLAY \
        --env=HOST_UID=$(id -u) \
