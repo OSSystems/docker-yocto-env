@@ -3,7 +3,7 @@ ARG version=18.04
 FROM ubuntu:$version
 
 # Does prevent interactive questions on apt operations
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractiveq
 
 # Install the required packages for development. We do this in a single command
 # so the cache of the layer is handled atomically.
@@ -65,8 +65,8 @@ RUN apt-get update && \
         lzop \
         swig \
         \
-        g++-arm-linux-gnueabihf \
-        gcc-arm-linux-gnueabihf \
+        g++-multilib \
+        gcc-multilib \
         \
         bash \
         zsh \
