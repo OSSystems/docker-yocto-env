@@ -14,6 +14,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends realpath || true && \
     apt-get install -y --no-install-recommends python python-dev || true && \
     apt-get install -y --no-install-recommends python3 python3-dev || true && \
+    apt-get install -y --no-install-recommends python3-distutils-extra || true && \
     apt-get install -y --no-install-recommends python-dev-is-python3 || true && \
     apt-get install -y --no-install-recommends libegl1-mesa || true && \
     apt-get install -y --no-install-recommends \
