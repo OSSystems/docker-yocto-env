@@ -25,17 +25,16 @@ jobs:
           - 22.04
           - 24.04
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Build Docker container '${{ matrix.version }}'
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v6
       with:
         tags: |
-          ossystems/yocto-env:${{ matrix.version }}
           ossystems/yocto-env:${{ matrix.version }}
         build-args: version=${{ matrix.version }}
         push: false
